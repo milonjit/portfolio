@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laishram | Video Editing Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://i.imgur.com/2zx9wZ0.jpg') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 60px;
+            border-radius: 25px;
+            backdrop-filter: blur(50px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 1);
+            animation: fadeIn 1.2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
+        .carousel-container {
+            display: flex;
+            transition: transform 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+            width: 300%;
+        }
+        .carousel-item {
+            width: 100%;
+            flex: 0 0 auto;
+            padding: 50px;
+            box-sizing: border-box;
+            opacity: 0.95;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .button {
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #ff0077, #7300ff);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 0, 119, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+        .button:hover {
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(255, 0, 119, 1);
+        }
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            box-shadow: 0 0 60px rgba(255, 255, 255, 1);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .star {
+            font-size: 2rem;
+            color: gold;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, color 0.3s;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+        }
+        .star:hover, .star.active {
+            transform: scale(1.3) rotate(10deg);
+            color: #ffcc00;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 1));
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.imgur.com/nvLDOOH.jpg" alt="Laishram" class="profile-img">
+        <h1>Laishram</h1>
+        <p><strong>Professional Video Editor | Shorts & Vlogs</strong></p>
+        
+        <div class="carousel">
+            <div class="carousel-container" id="carouselContainer">
+                <div class="carousel-item">
+                    <h2>About Me</h2>
+                    <p>I am a passionate video editor, continuously improving my skills to create visually stunning and engaging content. My expertise lies in editing shorts and vlogs, blending creativity with storytelling to captivate audiences.</p>
+                </div>
+                <div class="carousel-item">
+                    <h2>My Journey</h2>
+                    <p>My journey into video editing began with a simple passion for storytelling. Over time, I have honed my skills through rigorous practice and continuous learning.</p>
+                </div>
+                <div class="carousel-item">
+                    <h2>My Education</h2>
+                    <p><strong>10th Passed:</strong> 2022</p>
+                    <p><strong>12th Passed:</strong> 2024</p>
+                    <p><strong>Currently Pursuing:</strong> B.Voc in IT, 2nd Semester, 1st Year</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="carousel-buttons">
+            <button class="button" onclick="prevSlide()">⬅️</button>
+            <button class="button" onclick="nextSlide()">➡️</button>
+        </div>
+
+        <div class="stars">
+            <span class="star" onclick="rate(1)">★</span>
+            <span class="star" onclick="rate(2)">★</span>
+            <span class="star" onclick="rate(3)">★</span>
+            <span class="star" onclick="rate(4)">★</span>
+            <span class="star" onclick="rate(5)">★</span>
+        </div>
+
+        <div class="contact">
+            <h2>Contact Me</h2>
+            <p>Email: l.milonjitsingha1234@gmail.com</p>
+            <p>Phone: +91 7099260540</p>
+        </div>
+    </div>
+    
+    <script>
+        let currentIndex = 0;
+        function updateCarousel() {
+            document.getElementById('carouselContainer').style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        function nextSlide() {
+            if (currentIndex < 2) {
+                currentIndex++;
+                updateCarousel();
+            }
+        }
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        }
+        function rate(stars) {
+            document.querySelectorAll('.star').forEach((star, index) => {
+                star.classList.toggle('active', index < stars);
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
